@@ -1,0 +1,29 @@
+version: '2.1'
+services: 
+  server:
+    container_name: server
+    build: ./server
+    image: miolivc/server
+    ports:
+      - "10999:10999"
+  proxy:
+    container_name: proxy
+    build: ./proxy
+    image: miolivc/proxy
+    ports:
+      - "10998:10998"
+    links:
+      - "server:server"
+    depends_on:
+      - "server"
+  proxy:
+    container_name: proxy
+    build: ./proxy
+    image: miolivc/proxy
+    ports:
+      - "10998:10998"
+    links:
+      - "proxy:proxy"
+    depends_on:
+      - "proxy"
+  
