@@ -5,6 +5,7 @@ services:
     build: ./server
     image: miolivc/server
     ports:
+      - "10998:10998"
       - "10999:10999"
   proxy:
     container_name: proxy
