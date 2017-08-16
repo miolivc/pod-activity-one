@@ -7,6 +7,10 @@ package br.edu.ifpb.server;
 
 import br.edu.ifpb.shared.Usuario;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,14 +19,20 @@ import java.sql.Connection;
 public class UsuarioDAOJDBC implements UsuarioDAO {
     private final Connection connection;
 
-    public UsuarioDAOJDBC(Connection connection) {
-        this.connection = connection;
+    public UsuarioDAOJDBC(int connectionType) throws ClassNotFoundException, SQLException {
+        this.connection = ConnectionFactory.getConnection(connectionType);
     }
     
     @Override
     public void add(Usuario usuario) {
-        String sql = "INSERT INTO USUARIO(ID, NAME) VALUES(?, ?)";
-//        PreparedStatement stmt = 
+        try {
+            String sql = "INSERT INTO USUARIO(ID, NAME) VALUES(?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, usuario.getId());
+            stmt.setString(2, usuario.getName());
+            if (stmt.executeUpdate() != 1) throw new SQLException();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
 }

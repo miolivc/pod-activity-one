@@ -7,8 +7,6 @@ package br.edu.ifpb.client;
 
 import br.edu.ifpb.shared.Usuario;
 import java.io.IOException;
-import java.net.Socket;
-import java.util.Random;
 
 /**
  *
