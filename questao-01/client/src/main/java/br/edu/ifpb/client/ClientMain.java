@@ -30,8 +30,8 @@ public class ClientMain {
         int y = generateNumber(100);
         
         OutputStream out = socket.getOutputStream();
-        out.write((x + "").getBytes());
-        out.write((y + "").getBytes());
+        out.write(("" + x).getBytes());
+        out.write(("" + y).getBytes());
         
         InputStream in = socket.getInputStream();
         byte[] b = new byte[1024];

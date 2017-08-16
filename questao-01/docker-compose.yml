@@ -1,11 +1,13 @@
 version: '2.1'
 services: 
-  server:
-    container_name: server
-    build: ./server
-    image: miolivc/server
-    ports:
-      - "10999:10999"
+  client:
+    container_name: client
+    build: ./client
+    image: miolivc/client
+    links:
+      - "proxy:proxy"
+    depends_on:
+      - "proxy"
   proxy:
     container_name: proxy
     build: ./proxy
@@ -16,15 +18,9 @@ services:
       - "server:server"
     depends_on:
       - "server"
-  proxy:
-    container_name: proxy
-    build: ./proxy
-    image: miolivc/proxy
+  server:
+    container_name: server
+    build: ./server
+    image: miolivc/server
     ports:
-      - "10998:10998"
       - "10999:10999"
-    links:
-      - "proxy:proxy"
-    depends_on:
-      - "proxy"
-  

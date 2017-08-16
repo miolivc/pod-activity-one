@@ -27,9 +27,8 @@ public class Proxy {
     
     private static void writeData(Socket socket, int data) throws IOException {
         OutputStream out = socket.getOutputStream();
-        out.write((data + "").getBytes());
+        out.write(("" + data).getBytes());
         out.flush();
-        out.close();
     }
     
     public static int client(int x, int y) throws IOException {
@@ -44,8 +43,7 @@ public class Proxy {
             int x = readData(socket);
             int y = readData(socket);
             if (x == y) {
-                writeData(socket, y);
-                socket.close();
+                writeData(socket, x);
             } else {
                 int answer = client(x, y);
                 writeData(socket, answer);

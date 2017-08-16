@@ -33,7 +33,7 @@ public class Server {
         int answer = Calculator.calculate(x,y);
         
         OutputStream out = socket.getOutputStream();
-        out.write((answer + "").getBytes());
+        out.write(("" + answer).getBytes());
         
         in.close();
         out.close();
