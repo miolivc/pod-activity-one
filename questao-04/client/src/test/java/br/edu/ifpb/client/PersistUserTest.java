@@ -7,7 +7,7 @@ package br.edu.ifpb.client;
 
 import br.edu.ifpb.shared.Usuario;
 import com.sun.istack.internal.logging.Logger;
-import java.time.LocalDateTime;
+import java.util.concurrent.ExecutorService;
 import java.time.LocalTime;
 import org.junit.Test;
 
