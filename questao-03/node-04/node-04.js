@@ -8,6 +8,7 @@ const server = net.createServer((socket) => {
 	console.log("One connection has established!");
 
     socket.on("data", data => {
+		data = JSON.parse(data);
 		console.log("A acao foi: " + data.action + "\nA resposta foi: " + data.response);
 	});
 

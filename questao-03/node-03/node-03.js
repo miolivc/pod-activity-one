@@ -11,6 +11,7 @@ const server = net.createServer((socket) => {
 
     socket.on("data", data => {
 		console.log("The Client sended: " + data);
+		data = JSON.parse(data);
         if (data.action == "diff") {
             processDiff.diff(data);
         } else {

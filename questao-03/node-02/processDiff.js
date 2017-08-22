@@ -10,7 +10,7 @@ const diff = (data) => {
 
     client.connect(PORT, HOST, () => {
         console.log("> Socket aberto... \nEnviar a requisição \n");
-        client.write(data);
+        client.write(JSON.stringify(data));
     });
 
     client.on('close', () => {

@@ -3,10 +3,15 @@ const net = require("net");
 
 const ui = rl.createInterface(process.stdin, process.stdout);
 
-let x = ui.question("> Insert the first number: ");
-let y = ui.question("> Insert the second number: ");
-
 ui.question("> Insert the required option:", (action) => {
+    let x = Math.random(100);
+    console.log("First number" + x);
+
+    let y = Math.random(100);
+    console.log("Second number" + y);
+
+    ui.close();
+
     let request = {"action": action, "x" : x, "y" : y};
 
     // Depois tem que ser aleatorio para node2 ou node3
@@ -16,7 +21,7 @@ ui.question("> Insert the required option:", (action) => {
     const client = new net.Socket();
     client.connect(PORT, HOST, () => {
         console.log("> Socket aberto... \nEnviar a requisição \n");
-        client.write(request);
+        client.write(JSON.stringify(request));
     });
 
     client.on("close", () => {

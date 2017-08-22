@@ -11,10 +11,11 @@ const server = net.createServer((socket) => {
 
     socket.on("data", data => {
 		console.log("The Client sended: " + data);
+		data = JSON.parse(data);
         if (data.action == "sum") {
-            processSum.sum(data);
+            processSum(data);
         } else {
-            processDiff.diff(data);
+            processDiff(data);
         }
 	});
 
