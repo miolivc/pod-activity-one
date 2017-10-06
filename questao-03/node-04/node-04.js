@@ -10,8 +10,8 @@ const server = net.createServer((socket) => {
 	const resp; 
 
     socket.on("data", data => {
-		data = JSON.parse(data);
-		if (data.action == "sum") {
+	data = JSON.parse(data);
+	if (data.action == "sum") {
            resp = data.y + data.x;
         } else {
             resp = data.y - data.x;
