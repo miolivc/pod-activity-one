@@ -9,7 +9,8 @@ const sum = (data) => {
 
     client.connect(PORT, HOST, () => {
         console.log("> Socket aberto... \nEnviar a requisição \n");
-        client.write(JSON.stringify({"action": data.action, "response": (data.y + data.x)}));
+        client.write(JSON.stringify(data));
+        // client.write(JSON.stringify({"action": data.action, "response": (data.y + data.x)}));
     });
 
     client.on("close", () => {
